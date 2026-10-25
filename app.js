@@ -22,7 +22,6 @@
   const resultBadge = $("result-badge");
   const tableHint = $("table-hint");
   const themeToggle = $("theme-toggle");
-  const themeLabel = $("theme-label");
   const themeColor = document.querySelector('meta[name="theme-color"]');
   let busy = false;
   let downloadCsv = "";
@@ -35,7 +34,6 @@
     themeToggle.setAttribute("aria-pressed", String(isDark));
     themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
     themeToggle.title = `Switch to ${isDark ? "light" : "dark"} mode`;
-    themeLabel.textContent = isDark ? "Light mode" : "Dark mode";
     themeColor.content = isDark ? "#111722" : "#e9edf2";
     if (persist) {
       try { localStorage.setItem("project-storyboard-theme", resolvedTheme); } catch { /* Theme still applies for this session. */ }

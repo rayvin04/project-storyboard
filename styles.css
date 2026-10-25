@@ -28,7 +28,7 @@ button:focus-visible, textarea:focus-visible, .table-wrap:focus-visible { outlin
 
 .topbar { height: 68px; display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(16px, 2.1vw, 36px); border-bottom: 1px solid #dbe2e9; background: rgba(251, 252, 253, .82); }
 .topbar-actions { display: flex; align-items: center; gap: 18px; }
-.theme-toggle { display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid #d8e0e8; border-radius: 999px; background: #fbfcfd; color: #53657a; font-size: 11px; font-weight: 700; white-space: nowrap; transition: background .16s ease, border-color .16s ease, color .16s ease; }
+.theme-toggle { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; padding: 0; border: 1px solid #d8e0e8; border-radius: 50%; background: #fbfcfd; color: #53657a; transition: background .16s ease, border-color .16s ease, color .16s ease; }
 .theme-toggle:hover { background: #f3f6f9; border-color: #b9c6d4; color: #17263a; }
 .theme-icon { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .icon-sun { display: none; }

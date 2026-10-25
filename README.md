@@ -23,7 +23,9 @@ Open `http://localhost:4173`. The page posts to the AWS n8n webhook configured i
 
 ## Deploy
 
-The repository is connected to Vercel. Pushing to `main` triggers a production deployment. The n8n webhook must allow the deployed Vercel origin in its CORS settings.
+The repository root is a static site. The GitHub repository is connected to the `project-storyboard` Vercel project, so a push to `main` triggers a production deployment. The n8n webhook must allow the deployed Vercel origin in its CORS settings.
+
+The browser sends the complete script to the AWS webhook at `/webhook/project-storyboard` as a JSON payload with a simple `text/plain` content type. A successful response contains the storyboard CSV and scene count; background image generation is outside this project.
 
 ## Storyboard columns
 

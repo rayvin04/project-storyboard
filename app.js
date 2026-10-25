@@ -21,9 +21,26 @@
   const sceneRows = $("scene-rows");
   const resultBadge = $("result-badge");
   const tableHint = $("table-hint");
+  const themeToggle = $("theme-toggle");
+  const themeLabel = $("theme-label");
+  const themeColor = document.querySelector('meta[name="theme-color"]');
   let busy = false;
   let downloadCsv = "";
   let resultTitle = "";
+
+  function applyTheme(theme, persist = false) {
+    const resolvedTheme = theme === "dark" ? "dark" : "light";
+    document.documentElement.dataset.theme = resolvedTheme;
+    const isDark = resolvedTheme === "dark";
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+    themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+    themeToggle.title = `Switch to ${isDark ? "light" : "dark"} mode`;
+    themeLabel.textContent = isDark ? "Light mode" : "Dark mode";
+    themeColor.content = isDark ? "#111722" : "#e9edf2";
+    if (persist) {
+      try { localStorage.setItem("project-storyboard-theme", resolvedTheme); } catch { /* Theme still applies for this session. */ }
+    }
+  }
 
   function setInputState() {
     const length = scriptInput.value.length;
@@ -228,6 +245,10 @@
   form.addEventListener("submit", submit);
   sampleButton.addEventListener("click", () => { scriptInput.value = SAMPLE; scriptInput.dispatchEvent(new Event("input", { bubbles: true })); scriptInput.focus(); });
   downloadButton.addEventListener("click", download);
+  themeToggle.addEventListener("click", () => {
+    applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", true);
+  });
+  applyTheme(document.documentElement.dataset.theme || "light");
   setInputState();
 })();
 

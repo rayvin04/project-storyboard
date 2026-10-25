@@ -8,6 +8,7 @@ A focused script-to-storyboard demo. Paste a complete narration, generate a scen
 - Uses the connected EverythingProfessor storyboard examples and structured output parser.
 - Displays the returned scene plan in a horizontally scrollable table.
 - Downloads the storyboard CSV using a filename based on the script title.
+- Supports light and dark themes, follows the device preference on first visit, and remembers the selected theme in the browser.
 
 This project does not generate background images, upload files to Drive, or send team notifications.
 

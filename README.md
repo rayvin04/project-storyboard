@@ -12,6 +12,18 @@ A focused script-to-storyboard demo. Paste a complete narration, generate a scen
 
 This project does not generate background images, upload files to Drive, or send team notifications.
 
+## Evprof references
+
+- [Script-writing analysis](docs/evprof-script-writing-style-analysis.md) describes observed narration and storytelling patterns.
+- [Storyboard-style analysis](docs/evprof-storyboard-style-analysis.md) compares the supplied storyboard examples and proposes animator-facing prompt changes that still need matched-script testing.
+- The original storyboard-analysis DOCX is retained at `docs/Evprof_Storyboard_Style_Analysis.docx`.
+
+Keep script-understanding guidance separate from storyboard depiction guidance. The analysis documents do not establish the channel’s complete animation, character, composition, or motion rules.
+
+## Runtime integration status
+
+The web app sends the unchanged `{ title, script, mode: "storyboardOnly" }` request to the AWS n8n webhook configured in `app.js`. The workflow definition is not stored in this repository. The n8n connection available during this change exposed separate, inactive Heroku workflows with different webhook paths; it did not expose the AWS `project-storyboard` endpoint. Because those are different runtime targets, this repository change does not claim that the deployed AWS planner has loaded the new storyboard guidance. The matching AWS workflow still needs to load the reference through its supported prompt/context mechanism.
+
 ## Run locally
 
 Serve this folder with any static web server. For example:

@@ -173,6 +173,7 @@
     downloadCsv = found.csv || makeCsv(scenes);
     summary.hidden = false;
     tableWrap.hidden = false;
+    tableWrap.scrollTop = 0;
     tableHint.hidden = false;
     emptyState.hidden = true;
     resultBadge.hidden = false;

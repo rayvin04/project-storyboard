@@ -155,24 +155,6 @@ The storyboard is a production-planning document, not a finished visual product.
 
 The output also depends on the submitted script, connected references, model behavior, and workflow configuration. Review the storyboard for accuracy and completeness before using it in production.
 
-## Local Development
-
-The frontend is a static web application.
-
-To serve the files locally, open a terminal in the project directory and run:
-
-```bash
-python -m http.server 4173
-```
-
-Then open:
-
-```text
-http://localhost:4173
-```
-
-The local interface still depends on the configured n8n webhook for storyboard generation. A working local frontend does not guarantee that the remote workflow or Google Drive integration is available.
-
 ## Repository Structure
 
 The main project files include:
@@ -206,8 +188,6 @@ The two projects should be documented separately because their implemented capab
 AI Automation Specialist
 
 - Portfolio: [rayvingianan.r4yv.tech](https://rayvingianan.r4yv.tech)
-- GitHub: [rayvin04](https://github.com/rayvin04)
-
 ---
 
 *Project Storyboard helps turn narration into a clear, structured visual plan that animators can review and build upon.*

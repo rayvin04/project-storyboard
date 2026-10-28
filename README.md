@@ -8,7 +8,7 @@ A focused script-to-storyboard demo. Paste a complete narration, generate a scen
 - Uses the connected EverythingProfessor storyboard examples and structured output parser.
 - Displays the returned scene plan in a horizontally scrollable table.
 - Downloads the storyboard CSV using a filename based on the script title.
-- Saves each successfully packaged CSV as a uniquely named file in the [Project Storyboard - Generated CSVs Google Drive folder](https://drive.google.com/drive/folders/1p_q02YTRBWiq0xOpoTA5muqu2fI-jIvX).
+- Saves each successfully packaged CSV as a uniquely named file in the [Storyboard Only - No Images Google Drive folder](https://drive.google.com/drive/folders/1hiwy8D0GWx61tweE636SqqkktvWOABgY).
 - Uses a script-title slug, processing timestamp, and n8n execution ID in each filename; narration-warning results are marked `potentially-incomplete`.
 - Shows whether the Drive backup succeeded, and keeps the CSV download available if it did not.
 - Supports light and dark themes, follows the device preference on first visit, and remembers the selected theme in the browser.

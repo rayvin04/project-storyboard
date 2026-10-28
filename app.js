@@ -178,7 +178,14 @@
     emptyState.hidden = true;
     resultBadge.hidden = false;
     downloadButton.disabled = false;
-    showNotice(`Storyboard complete — ${scenes.length} scenes are ready to review.`);
+    const saveStatus = payload?.driveSave;
+    if (saveStatus?.ok === true) {
+      showNotice(`Storyboard complete — ${scenes.length} scenes are ready to review. CSV saved to Google Drive as ${saveStatus.fileName || "a new file"}.`);
+    } else if (saveStatus?.ok === false) {
+      showNotice(`Storyboard complete — ${scenes.length} scenes are ready to review, but the CSV was not saved to Google Drive. ${saveStatus.error || "Use Download CSV to keep a copy."}`, true);
+    } else {
+      showNotice(`Storyboard complete — ${scenes.length} scenes are ready to review. The workflow did not confirm a Google Drive save; check the n8n execution before relying on a backup.`, true);
+    }
   }
 
   function slugify(value) {
@@ -250,4 +257,5 @@
   applyTheme(document.documentElement.dataset.theme || "light");
   setInputState();
 })();
+
 

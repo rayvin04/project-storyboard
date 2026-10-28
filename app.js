@@ -127,8 +127,7 @@
   }
 
   function cleanScene(scene, index) {
-    if (Array.isArray(scene)) return Object.fromEntries(COLUMNS.map((key, i) => [key, scene[i] ?? ""]));
-    return {
+    const cleaned = Array.isArray(scene) ? Object.fromEntries(COLUMNS.map((key, i) => [key, scene[i] ?? ""])) : {
       "Scene": sceneValue(scene, "Scene", "scene", "sceneNumber", "scene_number") || String(index + 1),
       "Timestamp": sceneValue(scene, "Timestamp", "timestamp"),
       "Voiceover": sceneValue(scene, "Voiceover", "voiceover", "narration"),
@@ -138,6 +137,13 @@
       "On-screen text": sceneValue(scene, "On-screen text", "onScreenText", "onscreenText", "text"),
       "Transitions/Motion": sceneValue(scene, "Transitions/Motion", "transitionsMotion", "transition", "motion")
     };
+    if (cleaned["On-screen text"] == null || !String(cleaned["On-screen text"]).trim()) {
+      cleaned["On-screen text"] = "None";
+    }
+    if (cleaned["Transitions/Motion"] == null || !String(cleaned["Transitions/Motion"]).trim()) {
+      cleaned["Transitions/Motion"] = "Hard cut.";
+    }
+    return cleaned;
   }
 
   function escapeCsv(value) {
@@ -170,7 +176,13 @@
     $("story-title").textContent = title;
     $("scene-count").textContent = `${scenes.length} ${scenes.length === 1 ? "scene" : "scenes"}`;
     $("word-count").textContent = `${wordCount(originalScript).toLocaleString()} words`;
-    downloadCsv = found.csv || makeCsv(scenes);
+    const inputNeedsDefaults = found.scenes.some((scene) => {
+      const values = Array.isArray(scene)
+        ? { text: scene[COLUMNS.indexOf("On-screen text")], motion: scene[COLUMNS.indexOf("Transitions/Motion")] }
+        : { text: sceneValue(scene, "On-screen text", "onScreenText", "onscreenText", "text"), motion: sceneValue(scene, "Transitions/Motion", "transitionsMotion", "transition", "motion") };
+      return values.text == null || !String(values.text).trim() || values.motion == null || !String(values.motion).trim();
+    });
+    downloadCsv = found.csv && !inputNeedsDefaults ? found.csv : makeCsv(scenes);
     summary.hidden = false;
     tableWrap.hidden = false;
     tableWrap.scrollTop = 0;
@@ -257,5 +269,4 @@
   applyTheme(document.documentElement.dataset.theme || "light");
   setInputState();
 })();
-
 
